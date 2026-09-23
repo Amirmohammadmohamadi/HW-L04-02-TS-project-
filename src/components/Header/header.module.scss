@@ -1,0 +1,28 @@
+@import "../../variables.module.scss";
+
+.headerContainer {
+    width: 100%;
+    padding-inline: 10px;
+    padding-block: 10px;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    align-items: center;
+}
+
+.logoContainer {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    .logo {
+        color: $secondry;
+    }
+
+    h3 {
+        background: linear-gradient(to right , #676464 , $secondry);
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 600;
+        font-family: sans-serif;
+    }
+}

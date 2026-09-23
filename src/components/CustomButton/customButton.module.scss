@@ -1,0 +1,21 @@
+@import "../../variables.module.scss";
+
+.button {
+    border-radius: 6px;
+    font-size: large;
+    border: none;
+    cursor: pointer;
+    justify-self: right;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.primary {
+    @extend .button;
+    background-color: $secondry;
+    padding: 5px 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+}

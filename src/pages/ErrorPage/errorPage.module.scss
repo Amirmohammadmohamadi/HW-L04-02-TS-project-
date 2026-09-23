@@ -1,0 +1,9 @@
+@import "../../variables.module.scss";
+
+.errorPgaeContainer {
+    height: 100vh;
+    width: 100%;
+    background-color: $primary;
+    font-family: cursive;
+    color: white;
+}

@@ -1,0 +1,22 @@
+@import "../../variables.module.scss";
+
+.navBarContainer {
+    display: flex;
+    gap: 15px;
+    font-family: 'Franklin Gothic Medium';
+    text-decoration: none;
+    justify-self: center;
+}
+
+.link {
+    text-decoration: none;
+}
+
+.isActive {
+    color: $secondry;
+    font-size: 18px;
+}
+
+.isNotActive {
+    color: #ccc;
+}
