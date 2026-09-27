@@ -1,4 +1,4 @@
-@import "../../variables.module.scss";
+@import "../../styles/variables.module.scss";
 
 .button {
     border-radius: 6px;
@@ -6,6 +6,7 @@
     border: none;
     cursor: pointer;
     justify-self: right;
+    grid-column: 3;
 
     &:hover {
         opacity: 0.8;

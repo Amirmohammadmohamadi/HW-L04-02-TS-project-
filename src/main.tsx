@@ -5,6 +5,7 @@ import { RouterProvider } from "react-router";
 import { router } from "./routes/index.js";
 import { Provider } from "react-redux"
 import { store } from "./redux/index.js";
+import { AuthContextProvider } from "./context/AuthContext.js";
 
 const rootElement = document.getElementById("root");
 
@@ -15,7 +16,9 @@ if(!rootElement) {
 createRoot(rootElement).render(
   <StrictMode>
     <Provider store={store} >
-      <RouterProvider router={router}></RouterProvider>
+      <AuthContextProvider>
+        <RouterProvider router={router}></RouterProvider>
+      </AuthContextProvider>
     </Provider>
   </StrictMode>
 );

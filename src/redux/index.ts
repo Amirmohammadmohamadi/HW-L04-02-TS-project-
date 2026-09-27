@@ -3,7 +3,7 @@ import usersReducer, { setUsers } from "./slices/userSlice.js";
 import projectsRducer, { setProjects } from "./slices/projectsSlice.js";
 import tasksReducer, { setTasks } from "./slices/tasksSlice.js";
 
-const STORAGE_KEY = "ttm-state";
+export const STORAGE_KEY = "ttm-state";
 
 export const store = configureStore({
     reducer:{

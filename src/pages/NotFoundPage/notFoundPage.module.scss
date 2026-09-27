@@ -1,0 +1,48 @@
+@import "../../styles/variables.module.scss";
+
+@mixin flex_column {
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    height: 100vh;
+    width: 100%;
+    color: white;
+    padding-inline: 20px;
+    font-family: cursive;
+    @include flex_column();
+    align-items: center;
+
+    h1 {
+        font-size: 15rem;
+        font-weight: 900;
+        color: $secondry;
+        display: inline;
+        filter: drop-shadow(0 4px 5px rgba(255, 255, 255, 0.5));
+    }
+
+    h2 {
+        color: $secondry;
+        display: inline;
+        filter: drop-shadow(0 4px 5px rgba(255, 255, 255, 0.5));
+    }
+
+    p {
+        width: fit-content;
+        background: linear-gradient(to right , #ccc , $secondry);
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: bolder;
+        font-size: 1em;
+    }
+
+    .detail {
+        @include flex_column();
+        gap: 10px;
+
+        * {
+            align-self: center;
+        }
+    }
+}

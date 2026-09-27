@@ -36,3 +36,16 @@ export type NewProject = Omit<Project,"id" | "createdAt" | "ownerId">;
 export type NewTask = Omit<Task, "id" | "createdAt">;
 
 export type UpdateUsersPayload = {id:string} & Partial<Omit<User,"id" | "createdAt">>;
+
+export interface AuthContextType {
+    user: User | null;
+    isAuthenticated: boolean;
+    isLoading: boolean;
+    login: (email:string,password:string) => Promise<AuthResult>;
+    register: (data:NewUser) => Promise<AuthResult>;
+    logout: () => void;
+};
+
+export type AuthResult = 
+    | {success: true} 
+    | {success: false; error:string};
