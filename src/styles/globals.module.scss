@@ -1,9 +1,10 @@
 // ─────────────────────────────────────────
 // Globals
 // ─────────────────────────────────────────
+@use "./variables.scss" as *;
 
 html {
-    direction: rtl;
+    direction: ltr;
   }
   
   body {

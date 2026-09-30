@@ -1,0 +1,72 @@
+@use "../../styles/variables.scss" as *;
+@use "../../styles/mixins.scss" as *;
+
+.loginPageContainer {
+    height: 100vh;
+    width: 100%;
+    @include flex-center;
+
+
+    .loginCard {
+        // background-color: white;
+        @include card;
+        padding: 10px 40px;
+        border-radius: 6px;
+        @include flex-column;
+        gap: 20px;
+
+        h2 {
+            color: $orange-700;
+            align-self: center;
+            filter: drop-shadow(0 2px 1px $gray-100);
+        }
+
+        .formContainer {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            input {
+                outline: none;
+                padding: 4px;
+                color: black;
+
+                &::placeholder {
+                    font-size: $font-size-xs;
+                }
+            }
+            
+            .button {
+                color: black;
+                text-align: center;
+                background-color: $orange-500;
+                border-radius: 2px;
+                font-weight: $font-weight-bold;
+                padding: 4px;
+                color: $gray-50;
+                
+                &:hover {
+                    opacity: 0.9;
+                }
+
+                .spinnerIcon {
+                    margin-inline: auto;
+                    animation: spin 1s infinite;
+
+                    @keyframes spin {
+                        0% {
+                            rotate: 0deg;
+                        }
+                        100% {
+                            rotate: 360deg;
+                        }
+                        0% {
+                            rotate: 0deg;
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+}

@@ -2,16 +2,16 @@
 // Abstract layers (فقط متغیرها و mixinها)
 // ─────────────────────────────────────────
 
-@use "./variables.module.scss" as *;
-@use "./mixins" as *;
+@use "./variables.scss" as *;
+@use "./mixins.scss" as *;
 
 // ─────────────────────────────────────────
 // Base
 // ─────────────────────────────────────────
 
-@use "./reset";
-@use "./typography";
-@use "./globals";
+@use "./reset.module.scss";
+@use "./typography.module.scss";
+@use "./globals.module.scss";
 
 // ─────────────────────────────────────────
 // Components (بعداً اضافه می‌شن)

@@ -1,6 +1,7 @@
 // ─────────────────────────────────────────
 // Typography
 // ─────────────────────────────────────────
+@use "./variables.scss" as *;
 
 body {
     font-family: $font-family-base;
