@@ -1,4 +1,4 @@
-export type Role = "manager" | "memeber";
+export type Role = "manager" | "member";
 export type Priority = "low" | "medium" | "high";
 export type Status = "todo" | "in-progress" | "done";
 

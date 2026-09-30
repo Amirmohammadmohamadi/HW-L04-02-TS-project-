@@ -58,7 +58,6 @@ export const AuthContextProvider = ({children}:AuthContextProps) => {
             if(existing) {
                 return {success:false , error:"this email has registerd already!"};
             }
-
             dispatch(addUser(data));
             return {success:true};
         },[users,dispatch]

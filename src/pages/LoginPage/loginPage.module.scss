@@ -8,7 +8,7 @@
 
 
     .loginCard {
-        // background-color: white;
+        width: 30%;
         @include card;
         padding: 10px 40px;
         border-radius: 6px;
@@ -22,49 +22,11 @@
         }
 
         .formContainer {
-            display: flex;
-            flex-direction: column;
+            @include flex-column;
             gap: 10px;
-
-            input {
-                outline: none;
-                padding: 4px;
-                color: black;
-
-                &::placeholder {
-                    font-size: $font-size-xs;
-                }
-            }
             
-            .button {
-                color: black;
-                text-align: center;
-                background-color: $orange-500;
-                border-radius: 2px;
-                font-weight: $font-weight-bold;
-                padding: 4px;
-                color: $gray-50;
-                
-                &:hover {
-                    opacity: 0.9;
-                }
-
-                .spinnerIcon {
-                    margin-inline: auto;
-                    animation: spin 1s infinite;
-
-                    @keyframes spin {
-                        0% {
-                            rotate: 0deg;
-                        }
-                        100% {
-                            rotate: 360deg;
-                        }
-                        0% {
-                            rotate: 0deg;
-                        }
-                    }
-                }
+            .toRegisterPage {
+                font-size: $font-size-xs;
             }
         }
 

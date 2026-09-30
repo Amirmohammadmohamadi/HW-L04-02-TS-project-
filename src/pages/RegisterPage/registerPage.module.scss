@@ -1,0 +1,34 @@
+@use "../../styles/variables.scss" as *;
+@use "../../styles/mixins.scss" as *;
+
+.registerPageContainer {
+    height: 100vh;
+    width: 100%;
+    @include flex-center;
+}
+
+.registerCard {
+    width: 30%;
+    border-radius: 6px;
+    @include card;
+    @include flex-column;
+    gap: 20px;
+    padding: 20px 40px;
+
+    h2 {
+        color: $orange-700;
+        align-self: center;
+        filter: drop-shadow(0 2px 1px $gray-100);
+    }
+}
+
+.formContainer {
+    @include flex-column;
+    gap: 10px;
+}
+
+.roleSelection {
+        outline: none;
+        padding: 4px;
+        color: black;
+}
