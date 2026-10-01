@@ -8,7 +8,7 @@ const AuthLayout = () => {
     if(!isLoading && isAuthenticated) {
         return <Navigate to="/" replace/>
     }
-    return <BaseLayout><Outlet/></BaseLayout>
+    return <BaseLayout></BaseLayout>
 };
 
 export default AuthLayout;

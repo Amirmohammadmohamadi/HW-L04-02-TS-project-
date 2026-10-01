@@ -6,6 +6,7 @@ import { router } from "./routes/index.js";
 import { Provider } from "react-redux"
 import { store } from "./redux/index.js";
 import { AuthContextProvider } from "./context/AuthContext.js";
+import ToastContextProvider from "./context/ToastContext.js";
 
 const rootElement = document.getElementById("root");
 
@@ -17,7 +18,9 @@ createRoot(rootElement).render(
   <StrictMode>
     <Provider store={store} >
       <AuthContextProvider>
-        <RouterProvider router={router}></RouterProvider>
+        <ToastContextProvider>
+          <RouterProvider router={router}></RouterProvider>
+        </ToastContextProvider>
       </AuthContextProvider>
     </Provider>
   </StrictMode>

@@ -1,0 +1,55 @@
+@use "../../styles/variables.scss" as *;
+@use "../../styles/mixins.scss" as *;
+
+.toastCard {
+    padding: 10px;
+    @include flex-column;
+    border-radius: 2px;
+    position: relative;
+    animation: slideIn 0.5s ease;
+    
+    .message {
+        color: $gray-100;
+        font-weight: $font-weight-medium;
+    }
+
+    .crossIcon {
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        rotate: 45deg;
+        cursor: pointer;
+    }
+
+}
+
+.success {
+    @extend .toastCard;
+    background-color: $success;
+}
+
+.error {
+    @extend .toastCard;
+    background-color: $error;
+}
+
+.warning {
+    @extend .toastCard;
+    background-color: $warning;
+}
+
+.info {
+    @extend .toastCard;
+    background-color: $info;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

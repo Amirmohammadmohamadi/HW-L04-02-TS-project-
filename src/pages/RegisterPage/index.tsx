@@ -8,8 +8,8 @@ import CustomSpinner from "../../components/CustomSpinner/index.js";
 import type { NewUser, Role } from "../../types/index.js";
 import { useAuth } from "../../hooks/useAuth.js";
 import { useNavigate } from "react-router-dom";
-
-type RegisterFormType = NewUser & {confirmPassword:string};
+import FormError from "../../components/FormError/index.js";
+import { useToast } from "../../hooks/useToast.js";
 
 const registerSchema = Yup.object({
     name: Yup.string().required().min(3),
@@ -17,7 +17,9 @@ const registerSchema = Yup.object({
     password: Yup.string().min(4).required(),
     confirmPassword: Yup.string().required().oneOf([Yup.ref("password")],"this isn't match with password"),
     role: Yup.mixed<Role>().oneOf(["manager","member"],"The role is invalid.").required(),
-})
+});
+
+type RegisterFormType = Yup.InferType<typeof registerSchema>;
 
 const RegisterPage = () => {
     const { control , formState:{ errors , isSubmitting} , handleSubmit , reset } = 
@@ -29,29 +31,24 @@ const RegisterPage = () => {
         });
     const { register } = useAuth();
     const navigate = useNavigate();
-
-    console.log("form errors:",errors);
+    const { error:errorToast , success:successToast} = useToast();
 
     const onSubmit = async(data:RegisterFormType):Promise<void> => {
-        console.log("data:",data);
-        const res = await register({
-            email:data.email,
-            name:data.name,
-            password:data.password,
-            role:data.role
-        });
+        const {confirmPassword , ...userData} = data;
+        const res = await register(userData);
+
         if(!res.success) {
-            alert(res.error);
+            errorToast(res.error);
             return;
         }
-        reset({name:"",email:"",password:"",confirmPassword:"",role:"manager"});
-        alert("your registration was successfuly");
+        reset({name:"",email:"",password:"",confirmPassword:"",role:"member"});
+        successToast("your registration was successfully");
         navigate("/login");
     }
 
     return <div className={styles.registerPageContainer}>
         <div className={styles.registerCard}>
-            <h2>Register</h2>
+            <h2>Registration</h2>
             <form className={styles.formContainer} onSubmit={handleSubmit(onSubmit)}>
                 <Controller
                     name="name"
@@ -105,11 +102,14 @@ const RegisterPage = () => {
                     name="role"
                     control={control}
                     render={({field})=>
-                        <select className={styles.roleSelection} value={field.value} onChange={field.onChange}>
-                            <option disabled>role</option>
-                            <option value="member">member</option>
-                            <option value="manager">manager</option>
-                        </select>
+                        <div>
+                            <select className={styles.roleSelection} value={field.value} onChange={field.onChange}>
+                                <option disabled>role selecting</option>
+                                <option value="member">member</option>
+                                <option value="manager">manager</option>
+                            </select>
+                            <FormError error={errors.role?.message ?? ""}/>
+                        </div>
                     }
                 />
                 <CustomButton title="" variant="primary" type="submit">
