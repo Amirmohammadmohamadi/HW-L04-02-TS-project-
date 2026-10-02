@@ -43,11 +43,12 @@ export type NewUser = Omit<User,"id" | "createdAt">;
 export type NewProject = Omit<Project,"id" | "createdAt" | "ownerId">;
 export type NewTask = Omit<Task, "id" | "createdAt">;
 export type NewToast = Omit<Toast,"id">;
+export type AuthUser = Pick<User, "id" | "name" | "email" | "role">;
 
 export type UpdateUsersPayload = {id:string} & Partial<Omit<User,"id" | "createdAt">>;
 
 export interface AuthContextType {
-    user: User | null;
+    user: AuthUser | null;
     isAuthenticated: boolean;
     isLoading: boolean;
     login: (email:string,password:string) => Promise<AuthResult>;

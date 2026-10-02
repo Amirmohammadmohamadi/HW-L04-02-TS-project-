@@ -1,12 +1,29 @@
 @use "../../styles/variables.scss" as *;
 @use "../../styles/mixins.scss" as *;
 
+@mixin borderTimer($duration) {
+
+    &::after {
+        content: "";
+        width: 100%;
+        height: 5px;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background-color: white;
+        border-radius: 2px;
+        animation: progressBar $duration ease forwards;
+    }
+}
+
 .toastCard {
     padding: 10px;
     @include flex-column;
     border-radius: 2px;
     position: relative;
-    animation: slideIn 0.5s ease;
+    animation: slideIn 0.5s ease ;
+    overflow: hidden;
     
     .message {
         color: $gray-100;
@@ -25,21 +42,25 @@
 
 .success {
     @extend .toastCard;
+    @include borderTimer(3s);
     background-color: $success;
 }
 
 .error {
     @extend .toastCard;
+    @include borderTimer(4s);
     background-color: $error;
 }
 
 .warning {
     @extend .toastCard;
+    @include borderTimer(4s);
     background-color: $warning;
 }
 
 .info {
     @extend .toastCard;
+    @include borderTimer(3.5s);
     background-color: $info;
 }
 
@@ -53,3 +74,12 @@
         opacity: 1;
     }
 }
+
+@keyframes progressBar {
+    from {
+        width: 100%;
+    }
+    to {
+        width: 0;
+    }
+} 

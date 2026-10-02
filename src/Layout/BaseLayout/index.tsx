@@ -1,9 +1,13 @@
-import { Outlet } from "react-router-dom";
 import styles from "./layout.module.scss";
+import type { ReactNode } from "react";
 
-const BaseLayout = ()=> {
+interface propsType {
+    children:ReactNode;
+}
+
+const BaseLayout = ({children}:propsType)=> {
     return <div className={styles.layoutContainer}>
-        <Outlet/>
+        {children}
     </div>
 }
 

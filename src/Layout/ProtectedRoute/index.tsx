@@ -1,7 +1,8 @@
-import type { ReactNode } from "react";
 import { useAuth } from "../../hooks/useAuth.js";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 import BaseLayout from "../BaseLayout/index.js";
+import Header from "../../components/Header/index.js";
+import NavBar from "../../components/NavBar/index.js";
 
 const ProtectedRoute = () => {
     const {isAuthenticated,isLoading} = useAuth();
@@ -15,7 +16,10 @@ const ProtectedRoute = () => {
         return <Navigate to="/login" state={{from:location}} replace/>;
     }
 
-    return <BaseLayout></BaseLayout>
+    return <BaseLayout>
+        <Header ><NavBar/></Header>
+        <Outlet/>
+    </BaseLayout>
 };
 
 export default ProtectedRoute;

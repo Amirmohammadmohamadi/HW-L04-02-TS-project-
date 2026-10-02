@@ -1,0 +1,71 @@
+@use "../../styles/variables.scss" as *;
+@use "../../styles/mixins.scss" as *;
+
+.dashboardContainer {
+    padding: 10px 20px;
+    @include flex-column;
+    gap: 20px;
+}
+
+h2 {
+    color: white;
+}
+
+.statsCardContainer {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-gap: 10px;
+    padding-inline: 30px;
+}
+
+.tasksColumns {
+    padding: 30px;
+    width: 80%;
+    align-self: center;
+    @include card;
+    display: flex;
+    // align-items: center;
+    justify-content: space-between;
+}
+
+.tasksColumn {
+    @include flex-column;
+    gap: 5px;
+
+    .title {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        border-bottom: 1px solid white;
+        width: fit-content;
+    }
+
+    .list {
+        
+        li {
+            font-size: $font-size-xs;
+            display: flex;
+            align-items: center;
+            position: relative;
+
+            p {
+                transform: translateX(8px);
+            }
+
+            &::before {
+                content: "";
+                position: absolute;
+                width: 5px;
+                height: 5px;
+                background-color: white;
+                border-radius: 50%;
+            }
+        }
+    }
+}
+
+.line {
+
+    width: 1px;
+    background-color: white;
+}

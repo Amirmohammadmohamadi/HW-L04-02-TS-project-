@@ -5,11 +5,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import CustomInput from "../../components/CustomInput/index.js";
 import CustomButton from "../../components/CustomButton/index.js";
 import CustomSpinner from "../../components/CustomSpinner/index.js";
-import type { NewUser, Role } from "../../types/index.js";
+import type { Role } from "../../types/index.js";
 import { useAuth } from "../../hooks/useAuth.js";
 import { useNavigate } from "react-router-dom";
 import FormError from "../../components/FormError/index.js";
 import { useToast } from "../../hooks/useToast.js";
+import ToastContainer from "../../components/Toast/ToastContainer.js";
+import CustomSwitchLink from "../../components/CustomSwitchLink/index.js";
 
 const registerSchema = Yup.object({
     name: Yup.string().required().min(3),
@@ -31,22 +33,24 @@ const RegisterPage = () => {
         });
     const { register } = useAuth();
     const navigate = useNavigate();
-    const { error:errorToast , success:successToast} = useToast();
+    const toast = useToast();
 
     const onSubmit = async(data:RegisterFormType):Promise<void> => {
         const {confirmPassword , ...userData} = data;
         const res = await register(userData);
 
         if(!res.success) {
-            errorToast(res.error);
+            toast.warning(res.error);
             return;
         }
         reset({name:"",email:"",password:"",confirmPassword:"",role:"member"});
-        successToast("your registration was successfully");
+        toast.success("your registration was successfully");
+        await new Promise(res => setTimeout(res,3000));
         navigate("/login");
     }
 
     return <div className={styles.registerPageContainer}>
+        <ToastContainer/>
         <div className={styles.registerCard}>
             <h2>Registration</h2>
             <form className={styles.formContainer} onSubmit={handleSubmit(onSubmit)}>
@@ -115,6 +119,7 @@ const RegisterPage = () => {
                 <CustomButton title="" variant="primary" type="submit">
                     {isSubmitting ? <CustomSpinner size="25"/> : "Register"}
                 </CustomButton>
+                <CustomSwitchLink link="/login" linkText="login">I have registerd befor.</CustomSwitchLink>
             </form>
         </div>
     </div>

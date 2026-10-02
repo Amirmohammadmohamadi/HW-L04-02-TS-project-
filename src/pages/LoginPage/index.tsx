@@ -10,6 +10,7 @@ import CustomButton from "../../components/CustomButton/index.js";
 import CustomSpinner from "../../components/CustomSpinner/index.js";
 import { useToast } from "../../hooks/useToast.js";
 import ToastContainer from "../../components/Toast/ToastContainer.js";
+import CustomSwitchLink from "../../components/CustomSwitchLink/index.js";
 
 const loginSchema = Yup.object({
     email: Yup.string().required().email(),
@@ -21,16 +22,16 @@ const LoginPage = () => {
     console.log("form errors:",errors);
     const { login  } = useAuth();
     const navigate = useNavigate();
-    const { error:errorToast , success:successToast} = useToast();
+    const toast = useToast();
 
     const onSubmit = async(data:Pick<User,"email" | "password">):Promise<void> => {
         const res = await login(data.email,data.password);
         if(!res.success) {
-            errorToast(res.error);
+            toast.error(res.error);
             return;
         }
         reset({email:"",password:""});
-        successToast("you loged in successfully")
+        toast.success("you loged in successfully")
         navigate("/");
     };
     
@@ -67,7 +68,7 @@ const LoginPage = () => {
                 <CustomButton title="" variant="primary">
                     {isSubmitting ? <CustomSpinner size="25"/> : "Submit"}
                 </CustomButton>
-                <p className={styles.toRegisterPage}>you don't have any account? <Link to="/register">register</Link></p>
+                <CustomSwitchLink link="/register" linkText="register">I don't have any account?</CustomSwitchLink>
             </form>
         </div>
     </div>

@@ -1,4 +1,4 @@
-@import "../../variables.module.scss";
+@use "../../styles/variables.scss" as *;
 
 .navBarContainer {
     display: flex;
@@ -15,8 +15,34 @@
 .isActive {
     color: $secondry;
     font-size: 18px;
+    position: relative;
+
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background-color: white;
+        height: 2px;
+        border-radius: 2px;
+        animation: isActiveAnimation 4s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite forwards;
+        
+    }
 }
 
 .isNotActive {
     color: #ccc;
+}
+
+@keyframes isActiveAnimation {
+    0% {
+        background-color: transparent;
+    }
+    50% {
+        background-color: $secondry;
+    }
+    100% {
+        background-color: transparent;
+    }
 }
